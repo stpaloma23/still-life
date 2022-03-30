@@ -59,7 +59,6 @@ function initScene() {
     lightAmbient = new THREE.AmbientLight(0x404040);
     scene.add(lightAmbient);
 
-    // Add a point light to add shadows
     // https://github.com/mrdoob/three.js/pull/14087#issuecomment-431003830
     const shadowIntensity = .2;
 
@@ -186,17 +185,6 @@ function initScene() {
     neptune.position.x = 43;
     scene.add( neptune );})
 
-
-    // Add a plane
-    const geometryPlane = new THREE.PlaneBufferGeometry(screen.width, screen.height, 1, 1);
-    const materialPlane = new THREE.MeshPhongMaterial({ color: 0x000080 });
-
-    const uniforms = {
-        u_time: { type: 'f', value: 1.0 },
-        u_resolution: { type: 'v2', value: new THREE.Vector2(800,800) },
-        u_mouse: { type: 'v2', value: new THREE.Vector2() },
-    };
-  
     // Init animation
     animate();
 }
@@ -239,24 +227,7 @@ function onWindowResize() {
 function animate() {
     requestAnimationFrame(() => {
         animate();
-    });
-
-    let delta = clock.getDelta();
-    
-    // shaderMat.uniforms.u_time.value += delta;
-
-    // earth.rotation.x += 0.01;
-    // earth.rotation.y += 0.01;
-
-    // if (exampleModel != undefined) {
-    //     exampleModel.rotateX(0.01);
-    //     exampleModel.rotateY(0.01);
-    // }
-
-    // if (stats) stats.update();
-
-    // if (controls) controls.update();
-
+    });    
     renderer.render(scene, camera);
 }
 
